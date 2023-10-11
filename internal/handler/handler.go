@@ -17,7 +17,31 @@ func NewHandler(services *service.Services) *Handler {
 
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
-
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	return router
+}
+
+func (h *Handler) InitServiceRoutes(router *gin.Engine) {
+	serviceGroup := router.Group("/service")
+	{
+		serviceGroup.GET("/", h.GetAllServices)
+	}
+}
+
+func (h *Handler) InitCategoryRoutes(router *gin.Engine) {
+	categoryGroup := router.Group("/category")
+	{
+		categoryGroup.GET("/", h.GetAllCategories)
+	}
+}
+
+func (h *Handler) InitCertificateRoutes(router *gin.Engine) {
+	certGroup := router.Group("/certificate")
+	{
+		certGroup.GET("/", h.GetAllBoughtCertificates)
+		//certGroup.PUT("/", h.ChangeOwnerOfCertificate)
+		certGroup.GET("/link", h.GenerateLink)
+		certGroup.POST("/", h.CreateNewCertificate)
+		certGroup.PUT("/phone-number", h.ShareByPhoneNumber)
+	}
 }

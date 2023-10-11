@@ -14,6 +14,7 @@ type Repository struct {
 
 type User interface {
 	GetUserIdByPhoneNumber(phoneNumber string) (string, error)
+	CheckUser(id string) bool
 }
 
 type Certificate interface {

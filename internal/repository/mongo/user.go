@@ -18,3 +18,14 @@ func (m *MongoRepository) GetUserIdByPhoneNumber(phoneNumber string) (string, er
 	err := cur.Decode(&user)
 	return user.PhoneNumber, err
 }
+
+func (m *MongoRepository) CheckUser(id string) bool {
+	coll := m.DB.Database(m.Config.DBName).Collection(
+		m.Config.Collections[config.UserCollection])
+
+	filter := bson.M{"id": id}
+	cur := coll.FindOne(context.TODO(), filter)
+	var user entity.User
+	err := cur.Decode(&user)
+	return err == nil
+}

@@ -15,3 +15,7 @@ func NewUserService(repos repository.User) *UserService {
 func (s *UserService) GetUserIdByPhoneNumber(phoneNumber string) (string, error) {
 	return s.repo.GetUserIdByPhoneNumber(phoneNumber)
 }
+
+func (s *UserService) CheckUser(id string) bool {
+	return s.repo.CheckUser(id)
+}
