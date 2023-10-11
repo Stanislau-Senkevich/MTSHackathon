@@ -13,10 +13,14 @@ type Repository struct {
 }
 
 type User interface {
+	GetUserIdByPhoneNumber(phoneNumber string) (string, error)
 }
 
 type Certificate interface {
 	GetAllBoughtCertificates(userId string) ([]entity.Certificate, error)
+	ChangeOwnerOfCertificate(id, newUserId string) error
+	GenerateLink(id string) string
+	CreateNewCertificate(cert entity.Certificate) error
 }
 
 type Category interface {
