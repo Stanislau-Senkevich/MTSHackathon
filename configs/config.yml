@@ -1,0 +1,3 @@
+mongo_config:
+  db_name: "MTSDB"
+  conn_string: "mongodb+srv://botUser:<password>@mtscluster.tl4ppgr.mongodb.net/?retryWrites=true&w=majority"
