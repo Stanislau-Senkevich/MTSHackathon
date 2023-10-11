@@ -1,8 +1,8 @@
 package entity
 
 type Certificate struct {
-	Id         string
-	OwnerId    string
-	Type       string
-	Parameters map[string]string
+	Id         string            `mapstructure:"id"`
+	OwnerId    string            `mapstructure:"owner_id"`
+	Type       string            `mapstructure:"type"`
+	Parameters map[string]string `mapstructure:"parameters"`
 }

@@ -5,6 +5,13 @@ import (
 	"github.com/subosito/gotenv"
 )
 
+const (
+	CertificateCollection = "certificate"
+	UserCollection        = "user"
+	ServiceCollection     = "service"
+	CategoryCollection    = "category"
+)
+
 type Config struct {
 	Port  string
 	Mongo MongoConfig
@@ -13,8 +20,9 @@ type Config struct {
 type MongoConfig struct {
 	User             string
 	Password         string
-	DBName           string `mapstructure:"db_name"`
-	ConnectionString string `mapstructure:"conn_string"`
+	DBName           string            `mapstructure:"db_name"`
+	ConnectionString string            `mapstructure:"conn_string"`
+	Collections      map[string]string `mapstructure:"collections"`
 }
 
 func InitConfig() (*Config, error) { //nolint

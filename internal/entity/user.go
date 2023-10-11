@@ -1,7 +1,7 @@
 package entity
 
 type User struct {
-	Id          string
-	PhoneNumber string
-	Surname     string
+	Id          string `mapstructure:"id"`
+	PhoneNumber string `mapstructure:"phone_number"`
+	Surname     string `mapstructure:"surname"`
 }

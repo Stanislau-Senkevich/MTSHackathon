@@ -8,7 +8,9 @@ import (
 	"MTSHackathonBackEnd/internal/server"
 	"MTSHackathonBackEnd/internal/service"
 	"context"
+	"fmt"
 	"log"
+	"time"
 )
 
 func main() {
@@ -28,8 +30,15 @@ func main() {
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 
-	err = srv.Run(cfg.Port, handlers.InitRoutes())
-	if err != nil {
-		log.Fatalf("error due running server: %s", err.Error())
-	}
+	go func() {
+		err = srv.Run(cfg.Port, handlers.InitRoutes())
+		if err != nil {
+			log.Fatalf("error due running server: %s", err.Error())
+		}
+	}()
+
+	time.Sleep(time.Second * 2)
+	cat, _ := repos.GetAllCategories()
+	fmt.Println(cat)
+
 }

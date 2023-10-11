@@ -1,7 +1,7 @@
 package entity
 
 type Category struct {
-	Id   string
-	Name string
-	Sum  int
+	Id   string `mapstructure:"id"`
+	Name string `mapstructure:"name"`
+	Sum  int    `mapstructure:"sum"`
 }
