@@ -10,6 +10,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"sync"
 	"time"
 )
 
@@ -30,6 +31,8 @@ func main() {
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 
+	wg := &sync.WaitGroup{}
+	wg.Add(1)
 	go func() {
 		err = srv.Run(cfg.Port, handlers.InitRoutes())
 		if err != nil {
@@ -40,5 +43,5 @@ func main() {
 	time.Sleep(time.Second * 2)
 	cat, _ := repos.GetAllCategories()
 	fmt.Println(cat)
-
+	wg.Wait()
 }

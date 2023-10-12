@@ -1,0 +1,178 @@
+definitions:
+  entity.Category:
+    properties:
+      id:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      sum:
+        type: integer
+    type: object
+  entity.Certificate:
+    properties:
+      id:
+        type: string
+      owner_id:
+        type: string
+      parameters:
+        additionalProperties:
+          type: string
+        type: object
+      type:
+        type: string
+    type: object
+  entity.Service:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      sub_services:
+        items:
+          additionalProperties:
+            type: string
+          type: object
+        type: array
+    type: object
+  handler.Input:
+    type: object
+info:
+  contact: {}
+paths:
+  /category:
+    get:
+      operationId: get-categories
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Category'
+            type: array
+      summary: Get categories
+      tags:
+      - category
+  /certificate:
+    get:
+      operationId: get-bought-certificate
+      parameters:
+      - description: input info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/handler.Input'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Certificate'
+            type: array
+      summary: Get all bought certificates
+      tags:
+      - certificate
+    post:
+      operationId: create-new-certificate
+      parameters:
+      - description: certificate info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Certificate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create new certificate
+      tags:
+      - certificate
+  /certificate/link:
+    get:
+      operationId: generate-link
+      parameters:
+      - description: certificate info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Certificate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Generate link
+      tags:
+      - certificate
+    put:
+      operationId: accept-link
+      parameters:
+      - description: input info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/handler.Input'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.Input'
+      summary: Accept link
+      tags:
+      - certificate
+  /certificate/phone-number:
+    get:
+      operationId: share-number
+      parameters:
+      - description: input info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/handler.Input'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.Input'
+      summary: Share phone number
+      tags:
+      - certificate
+  /service:
+    get:
+      operationId: get-services
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Service'
+            type: array
+      summary: Get services
+      tags:
+      - service
+swagger: "2.0"

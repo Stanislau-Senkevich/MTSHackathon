@@ -13,7 +13,7 @@ const (
 )
 
 type Config struct {
-	Port  string
+	Port  string `mapstructure:"port"`
 	Mongo MongoConfig
 }
 
@@ -34,6 +34,10 @@ func InitConfig() (*Config, error) { //nolint
 	}
 
 	if err := viper.UnmarshalKey("mongo_config", &cfg.Mongo); err != nil {
+		return nil, err
+	}
+
+	if err := viper.Unmarshal(&cfg); err != nil {
 		return nil, err
 	}
 

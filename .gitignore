@@ -1,1 +1,4 @@
 .env
+helperJson.json
+cmd/mongoScript.go
+cmd/postmanHelper.txt

@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
+	"strconv"
 )
 
 func (m *MongoRepository) GetAllBoughtCertificates(userId string) ([]entity.Certificate, error) {
@@ -52,4 +53,14 @@ func (m *MongoRepository) CreateNewCertificate(cert entity.Certificate) error {
 
 	_, err := coll.InsertOne(context.TODO(), &cert)
 	return err
+}
+
+func (m *MongoRepository) GenerateUniqueId() (string, error) {
+	coll := m.DB.Database(m.Config.DBName).Collection(
+		m.Config.Collections[config.CertificateCollection])
+	count, err := coll.CountDocuments(context.TODO(), bson.D{})
+	if err != nil {
+		return "", err
+	}
+	return strconv.FormatInt(count+1, 10), nil
 }

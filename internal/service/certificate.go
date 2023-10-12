@@ -28,3 +28,7 @@ func (s *CertificateService) GenerateLink(id string) string {
 func (s *CertificateService) CreateNewCertificate(cert entity.Certificate) error {
 	return s.repo.CreateNewCertificate(cert)
 }
+
+func (s *CertificateService) GenerateUniqueId() (string, error) {
+	return s.repo.GenerateUniqueId()
+}

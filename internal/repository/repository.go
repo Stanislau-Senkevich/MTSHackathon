@@ -22,6 +22,7 @@ type Certificate interface {
 	ChangeOwnerOfCertificate(id, newUserId string) error
 	GenerateLink(id string) string
 	CreateNewCertificate(cert entity.Certificate) error
+	GenerateUniqueId() (string, error)
 }
 
 type Category interface {
@@ -37,5 +38,6 @@ func NewRepository(repository *mongodb.MongoRepository) *Repository {
 		User:        repository,
 		Certificate: repository,
 		Category:    repository,
+		Service:     repository,
 	}
 }

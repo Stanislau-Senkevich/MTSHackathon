@@ -25,6 +25,7 @@ type Certificate interface {
 	ChangeOwnerOfCertificate(id, newUserId string) error
 	GenerateLink(id string) string
 	CreateNewCertificate(cert entity.Certificate) error
+	GenerateUniqueId() (string, error)
 }
 
 type Category interface {
