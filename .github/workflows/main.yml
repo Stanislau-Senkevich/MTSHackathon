@@ -56,8 +56,11 @@ jobs:
             # Remove old containers
             docker rm $(echo $CONTAINER_NAME)
             
+            export MONGO_USER=${{ secrets.MONGO_USER }}
+            export MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}
+            
             # Run a new container from a new image
-            docker run -d \
+            docker run -e MONGO_USER -e MONGO_PASSWORD -d \
             --restart always \
             --publish 8080:8080 \
             --name $(echo $CONTAINER_NAME) \
