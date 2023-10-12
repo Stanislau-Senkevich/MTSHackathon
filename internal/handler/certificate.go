@@ -7,9 +7,9 @@ import (
 )
 
 type Input struct {
-	certId      string `json:"cert_id"`
-	userId      string `json:"user_id"`
-	phoneNumber string `json:"phone_number" bson:"phone_number"`
+	CertId      string `json:"cert_id"`
+	UserId      string `json:"user_id"`
+	PhoneNumber string `json:"phone_number" bson:"phone_number"`
 }
 
 // @Summary	Get all bought certificates
@@ -26,7 +26,7 @@ func (h *Handler) getAllBoughtCertificates(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	certs, err := h.services.Certificate.GetAllBoughtCertificates(input.userId)
+	certs, err := h.services.Certificate.GetAllBoughtCertificates(input.UserId)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, err.Error())
 		return
@@ -48,7 +48,7 @@ func (h *Handler) acceptLink(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	err = h.services.ChangeOwnerOfCertificate(input.certId, input.userId)
+	err = h.services.ChangeOwnerOfCertificate(input.CertId, input.UserId)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "Bad request")
 		return
@@ -121,11 +121,11 @@ func (h *Handler) shareByPhoneNumber(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	id, err := h.services.GetUserIdByPhoneNumber(input.phoneNumber)
+	id, err := h.services.GetUserIdByPhoneNumber(input.PhoneNumber)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, err.Error())
 	}
-	err = h.services.ChangeOwnerOfCertificate(input.certId, id)
+	err = h.services.ChangeOwnerOfCertificate(input.CertId, id)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, err.Error())
 	}
