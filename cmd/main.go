@@ -7,7 +7,6 @@ import (
 	mongodb "MTSHackathonBackEnd/internal/repository/mongo"
 	"MTSHackathonBackEnd/internal/server"
 	"MTSHackathonBackEnd/internal/service"
-	"context"
 	"fmt"
 	"log"
 	"sync"
@@ -19,11 +18,9 @@ func main() {
 		log.Fatalf("error due reading config: %s", err.Error())
 	}
 	mongo, err := mongodb.InitMongoRepository(&cfg.Mongo)
-	defer func() {
-		if err = mongo.DB.Disconnect(context.Background()); err != nil {
-			log.Fatal(err)
-		}
-	}()
+	if err != nil {
+		log.Fatalf(err.Error())
+	}
 
 	srv := new(server.Server)
 	repos := repository.NewRepository(mongo)
