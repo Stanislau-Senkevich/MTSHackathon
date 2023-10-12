@@ -8,10 +8,8 @@ import (
 	"MTSHackathonBackEnd/internal/server"
 	"MTSHackathonBackEnd/internal/service"
 	"context"
-	"fmt"
 	"log"
 	"sync"
-	"time"
 )
 
 func main() {
@@ -40,8 +38,5 @@ func main() {
 		}
 	}()
 
-	time.Sleep(time.Second * 2)
-	cat, _ := repos.GetAllCategories()
-	fmt.Println(cat)
 	wg.Wait()
 }

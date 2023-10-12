@@ -2,7 +2,6 @@ package config
 
 import (
 	"github.com/spf13/viper"
-	"github.com/subosito/gotenv"
 )
 
 const (
@@ -47,9 +46,9 @@ func InitConfig() (*Config, error) { //nolint
 }
 
 func parseEnv(cfg *Config) error {
-	if err := gotenv.Load(); err != nil {
-		return err
-	}
+	//if err := gotenv.Load(); err != nil {
+	//	return err
+	//}
 
 	if err := viper.BindEnv("mongo_user"); err != nil {
 		return err
