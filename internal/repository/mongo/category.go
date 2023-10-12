@@ -9,6 +9,7 @@ import (
 )
 
 func (m *MongoRepository) GetAllCategories() ([]entity.Category, error) {
+	fmt.Println("55555555555555555555555")
 	fmt.Println(m.Config)
 	fmt.Println(m.DB)
 	coll := m.DB.Database(m.Config.DBName).Collection(
