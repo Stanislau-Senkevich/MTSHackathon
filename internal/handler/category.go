@@ -15,7 +15,7 @@ import (
 func (h *Handler) getAllCategories(c *gin.Context) {
 	categories, err := h.services.GetAllCategories()
 	if err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, "Internal error")
+		c.AbortWithStatusJSON(http.StatusInternalServerError, err.Error())
 		return
 	}
 	c.JSON(http.StatusOK, map[string][]entity.Category{
