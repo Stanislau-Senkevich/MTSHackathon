@@ -8,6 +8,7 @@ import (
 	"MTSHackathonBackEnd/internal/server"
 	"MTSHackathonBackEnd/internal/service"
 	"context"
+	"fmt"
 	"log"
 	"sync"
 )
@@ -37,6 +38,10 @@ func main() {
 			log.Fatalf("error due running server: %s", err.Error())
 		}
 	}()
+
+	fmt.Print("\n\n\n\n\n\n")
+	fmt.Println(cfg)
+	fmt.Print("\n\n\n\n\n\n")
 
 	wg.Wait()
 }
