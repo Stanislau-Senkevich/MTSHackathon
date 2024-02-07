@@ -1,3 +1,4 @@
+basePath: /
 definitions:
   entity.Category:
     properties:
@@ -8,7 +9,7 @@ definitions:
       name:
         type: string
       sum:
-        type: integer
+        type: string
     type: object
   entity.Certificate:
     properties:
@@ -37,9 +38,20 @@ definitions:
         type: array
     type: object
   handler.Input:
+    properties:
+      cert_id:
+        type: string
+      phone_number:
+        type: string
+      user_id:
+        type: string
     type: object
+host: droplet.senkevichdev.work:8080
 info:
   contact: {}
+  description: API Server for mobile application
+  title: Backend for MTS Hackathon
+  version: "1.0"
 paths:
   /category:
     get:

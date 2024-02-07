@@ -1,8 +1,13 @@
 {
     "swagger": "2.0",
     "info": {
-        "contact": {}
+        "description": "API Server for mobile application",
+        "title": "Backend for MTS Hackathon",
+        "contact": {},
+        "version": "1.0"
     },
+    "host": "droplet.senkevichdev.work:8080",
+    "basePath": "/",
     "paths": {
         "/category": {
             "get": {
@@ -225,7 +230,7 @@
                     "type": "string"
                 },
                 "sum": {
-                    "type": "integer"
+                    "type": "string"
                 }
             }
         },
@@ -270,7 +275,18 @@
             }
         },
         "handler.Input": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "cert_id": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
         }
     }
 }

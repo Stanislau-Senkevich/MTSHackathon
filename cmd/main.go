@@ -12,6 +12,12 @@ import (
 	"sync"
 )
 
+//	@title			Backend for MTS Hackathon
+//	@version		1.0
+//	@description	API Server for mobile application
+
+// @host		droplet.senkevichdev.work:8080
+// @BasePath	/
 func main() {
 	cfg, err := config.InitConfig()
 	if err != nil {

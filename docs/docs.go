@@ -236,7 +236,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "sum": {
-                    "type": "integer"
+                    "type": "string"
                 }
             }
         },
@@ -281,19 +281,30 @@ const docTemplate = `{
             }
         },
         "handler.Input": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "cert_id": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
         }
     }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "",
-	Host:             "",
-	BasePath:         "",
+	Version:          "1.0",
+	Host:             "droplet.senkevichdev.work:8080",
+	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "",
-	Description:      "",
+	Title:            "Backend for MTS Hackathon",
+	Description:      "API Server for mobile application",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",
