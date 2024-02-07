@@ -6,7 +6,7 @@
         "contact": {},
         "version": "1.0"
     },
-    "host": "droplet.senkevichdev.work:8080",
+    "host": "143.198.157.158:8080",
     "basePath": "/",
     "paths": {
         "/category": {
